@@ -16,6 +16,14 @@ global myVar Hwr20!!.2
 global myVar
 ```
 
+## Alias
+Optionally you can reate an alias.
+```shell
+echo alias gb='global' >> ~/.bashrc
+
+gb myVar
+```
+
 # A more elaborate example
 Insted of do something like
 ```bash
@@ -32,12 +40,4 @@ And then in another termianl (maybe you already have it open) you can continue u
 # In another terminal
 ping -c 3 `gb aws`
 scp ./somefile.sql Admin@`gb aws`:/some_folder/
-```
-
-## Alias
-Optionally you can reate an alias.
-```shell
-echo alias gb='global' >> ~/.bashrc
-
-gb myVar
 ```
