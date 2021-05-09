@@ -31,7 +31,7 @@ And then in another termianl (maybe you already have it open) you can continue u
 ```bash
 # In another terminal
 ping -c 3 `gb aws`
-scp ./somefile.sql Admin@`gb aws`
+scp ./somefile.sql Admin@`gb aws`:/some_folder/
 ```
 
 ## Alias
