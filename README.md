@@ -17,7 +17,7 @@ global myVar
 ```
 
 ## Alias
-Optionally you can reate an alias.
+Optionally you can create an alias.
 ```shell
 echo alias gb='global' >> ~/.bashrc
 
