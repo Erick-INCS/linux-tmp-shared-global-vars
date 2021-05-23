@@ -5,25 +5,27 @@ temporal global variables in yout terminal """
 import pickle
 from sys import argv
 from os.path import exists
+from os import environ as env
 
 
 FILE = '/tmp/globals.tmp'
+P_FILE = env.get('HOME') + '/.globals'
 
 
-def read():
+def read(path=FILE):
     """ Read all the variables stored """
-    if not exists(FILE):
+    if not exists(path):
         return {}
 
-    reader = open(FILE, 'rb')
+    reader = open(path, 'rb')
     data = pickle.load(reader)
     reader.close()
     return data
 
 
-def write(data):
+def write(data, path=FILE):
     """ Save the variables """
-    writer = open(FILE, 'wb')
+    writer = open(path, 'wb')
     pickle.dump(data, writer)
     writer.close()
 
@@ -33,15 +35,20 @@ def main(args):
     if len(args) <= 1:
         return
 
+    src = FILE
+    if args[1] == '-p':
+        args = [args[0]] + args[2:]
+        src = P_FILE
+
     if len(args) == 3:
         if not args[2].strip():
             return
 
-        data = read()
+        data = read(src)
         data[args[1]] = args[2]
-        write(data)
+        write(data, src)
     else:
-        print(dict.get(read(), args[1], ''), end='')
+        print(dict.get(read(src), args[1], ''), end='')
 
 
 main(argv)
